@@ -4,8 +4,13 @@ server <- function(input, output) {
   # filter for channel types
   trout_filtered_df <- reactive({
     
-    clean_trout |>
-      filter(channel_type %in% c(input$channel_type_input)) |>
+    # create validation test
+    validate(
+      need(length(input$channel_type_input) > 0, "please select at least one channel type to visualize data for" # at least one selected
+    )) # END of validation test
+    
+    clean_trout %>%
+      filter(channel_type %in% c(input$channel_type_input)) %>%
       filter(section %in% c(input$section_input))
     
   })
@@ -37,6 +42,12 @@ server <- function(input, output) {
   
   # filter for island
   island_df <- reactive({
+    
+    # create validation test
+    validate(
+      need(length(input$penguin_island_input) > 0, "please select at least one island to visualize data for" # at least one selected
+      )) # END of validation test
+    
     
     penguins %>%
       filter(island %in% input$penguin_island_input)
