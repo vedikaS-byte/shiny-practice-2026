@@ -38,7 +38,11 @@ server <- function(input, output) {
       labs(x = "Trout Length (mm)", y = "Trout Weight (g)", color = "Channel Type", shape = "Channel Type") +
       myCustomTheme()
     
-  })
+  }, 
+  
+  alt = "This is my trout plot alt text"
+  
+  )
   
   # filter for island
   island_df <- reactive({
@@ -67,6 +71,9 @@ server <- function(input, output) {
            fill = "Penguin species") +
       myCustomTheme()
     
-  })
+  }, 
+  alt = "This is some alt text for penguin histogram."
+  
+  )
   
 } # END server

@@ -4,6 +4,7 @@ library(tidyverse)
 library(shinyWidgets)
 library(markdown)
 library(palmerpenguins)
+library(shinycssloaders)
 
 # Wrangling 
 clean_trout <- and_vertebrates |>
