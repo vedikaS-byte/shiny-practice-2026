@@ -1,9 +1,22 @@
+
 ui <- navbarPage(
   
   title = "LTER Animal Data Explorer",
   
   # (Page 1) intro tabPanel
   tabPanel(title = "About this App",
+           
+           # intro text fluidRow
+           fluidRow(
+             column(1),
+             column(12,includeMarkdown("text/about.md")),
+             column(1)
+             
+           ), #End intro fluidRow text
+           
+           hr(), 
+           
+           includeMarkdown("text/footer.md")
            
   ), # END (Page 1) intro tabPanel
   

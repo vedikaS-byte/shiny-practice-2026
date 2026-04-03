@@ -2,6 +2,8 @@
 
 <br>
 
+**This Shiny app was created by Vedika Shirtekar as part of the EDS 292-1S course for the MEDS program. All relevant code is referenced directly from [Samantha Shanny-Csik](https://samanthacsik.github.io/). 
+
 ## Why did we build this app?
 
 This shiny app was built, in part, to provide users a way of exploring morphological characteristics of the different animal species found within NSF's [Long Term Ecological Research (LTER)](https://lternet.edu/) sites...but primarily, it was built as a teaching tool for [EDS 296 (Intro to Shiny)](https://bren.ucsb.edu/courses/eds-430) -- this workshop, taught through the [Master of Environmental Data Science (MEDS) program](https://ucsb-meds.github.io/) at the [Bren School of Environmental Science and Management](https://bren.ucsb.edu/), is a two-day coding-intensive course meant to provide a introductory foundation in shiny app development.
