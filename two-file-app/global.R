@@ -2,6 +2,7 @@ library(shiny)
 library(lterdatasampler)
 library(tidyverse)
 library(shinyWidgets)
+library(markdown)
 
 # Wrangling 
 clean_trout <- and_vertebrates |>

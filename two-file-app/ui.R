@@ -1,93 +1,94 @@
-# Establish user interface
 ui <- navbarPage(
   
-  # Title 
   title = "LTER Animal Data Explorer",
   
-  # (Page 1) Intro tabPanel
-  tabPanel(title = "About this app"
-  ),# END (page 1) intro tab panel
-  
-  # (Page 2) Data tabPanel
-  tabPanel(title = "Explore the Data", 
+  # (Page 1) intro tabPanel
+  tabPanel(title = "About this App",
            
+  ), # END (Page 1) intro tabPanel
+  
+  # (Page 2) data viz tabPanel
+  tabPanel(title = "Explore the Data",
+           
+           # tabsetPanel to contain tabs for data viz
            tabsetPanel(
              
-             # trout tab 
-             tabPanel(
-               title = "Trout", 
-               
-               # sidebarLauout fr trout
-               sidebarLayout(
-                 
-                 # trout sidebarPanel
-                 sidebarPanel(
-                   # channel type pickerInput
-                   pickerInput(inputId = "channel_type_input", 
-                               label = "Seect channel type(s):", 
-                               choices = unique(clean_trout$channel_type), 
-                               selected = c("cascade", "pool"), 
-                               multiple = TRUE, 
-                               options = pickerOptions(actionsBox = T)) # END 
-                   
-                 ), # End trout sidebarPanel
-                 
-                 # main panel for trout
-                 mainPanel(
-                   
-                   # Plot out goes here
-                   plotOutput(outputId = "trout_scatterplot_output")
-                   
-                 ) # END trout mainPanel
-                 
-               )
-               
-             ), # END trout panel
+             # trout tabPanel
+             tabPanel(title = "Trout",
+                      
+                      # trout plot sidebarLayout
+                      sidebarLayout(
+                        
+                        # trout plot sidebarPanel
+                        sidebarPanel(
+                          
+                          # channel type pickerInput
+                          pickerInput(inputId = "channel_type_input", 
+                                      label = "Select channel type(s):",
+                                      choices = unique(clean_trout$channel_type),
+                                      selected = c("cascade", "pool"),
+                                      multiple = TRUE,
+                                      options = pickerOptions(actionsBox = TRUE)), # END channel type pickerInput
+                          
+                          # # section checkboxGroupInput
+                          checkboxGroupButtons(inputId = "section_input", 
+                                               label = "Select a sampling section(s):",
+                                               choices = c("clear cut forest", "old growth forest"),
+                                               selected = c("clear cut forest", "old growth forest"),
+                                               individual = FALSE, justified = TRUE, size = "sm",
+                                               checkIcon = list(yes = icon("check", lib = "font-awesome"), 
+                                                                no = icon("xmark", lib = "font-awesome"))), # END section checkboxGroupInput
+                          
+                        ), # END trout plot sidebarPanel
+                        
+                        # trout plot mainPanel
+                        mainPanel(
+                          
+                          plotOutput(outputId = "trout_scatterplot_output")
+                          
+                        ) # END trout plot mainPanel
+                        
+                      ) # END trout plot sidebarLayout
+                      
+             ), # END trout tabPanel 
              
+             # penguin tabPanel
+             tabPanel(title = "Penguins",
+                      
+                      # penguin plot sidebarLayout
+                      sidebarLayout(
+                        
+                        # penguin plot sidebarPanel
+                        sidebarPanel(
+                          
+                          # island pickerInput
+                          pickerInput(inputId = "penguin_island_input", 
+                                      label = "Select an island(s):",
+                                      choices = c("Torgersen", "Dream", "Biscoe"),
+                                      selected = c("Torgersen", "Dream", "Biscoe"),
+                                      multiple = TRUE,
+                                      options = pickerOptions(actionsBox = TRUE)), # END island pickerInput
+                          
+                          # bin number sliderInput
+                          sliderInput(inputId = "bin_num_input", 
+                                      label = "Select number of bins:",
+                                      min = 1, max = 100, value = 25) # END bin number sliderInput
+                          
+                        ), # END penguin plot sidebarPanel
+                        
+                        # penguin plot mainPanel
+                        mainPanel(
+                          
+                          plotOutput(outputId = "flipper_length_histogram_output") 
+                          
+                        ) # END penguin plot mainPanel
+                        
+                      ) # END penguin plot sidebarLayout
+                      
+             ) # END penguin tabPanel
              
-             # Pengiuns panel
-             tabPanel( 
-               title = "Penguins", 
-               
-               
-               # set sidepanel for penguins 
-               sidebarLayout(
-                 
-                 # sidebarPanel
-                 sidebarPanel(
-                   
-                   "penguin input widgets here"
-                   
-                 ), # END penguins sidebar panel 
-                 
-                 # Create main panel for results (viz)
-                 mainPanel(
-                   
-                   "penguins data viz here"
-                   
-                 )
-                 
-                 
-               )
-               
-               
-               
-             )
-             
-           )       
+           ) # END tabsetPanel
            
-           
-           
-           
-           
-  ) # END (page 2) data tabPanel
+  ) # END (Page 2) data viz tabPanel
+  
 ) # END navbarPage
-
-
-
-
-
-
-
-
-

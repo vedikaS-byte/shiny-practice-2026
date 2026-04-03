@@ -71,7 +71,7 @@ island_df <- penguins |>
   filter(island %in% c("Dream", "Torgesen"))
 
 #........................plot penguin data.......................
-ggplot(na.omit(penguins), aes(x = flipper_length_mm, fill = species)) +
+ggplot(na.omit(island_df), aes(x = flipper_length_mm, fill = species)) +
   geom_histogram(alpha = 0.6, position = "identity", bins = 25) +
   scale_fill_manual(values = c("Adelie" = "#FEA346", "Chinstrap" = "#B251F1", "Gentoo" = "#4BA4A4")) +
   labs(x = "Flipper length (mm)", y = "Frequency",
