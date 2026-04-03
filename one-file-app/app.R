@@ -10,6 +10,7 @@
 library(shiny)
 library(tidyverse)
 library(palmerpenguins)
+library(DT)
 
 # Create user interface
 ui <- fluidPage(
@@ -27,7 +28,17 @@ ui <- fluidPage(
               min = 2700, max = 6300, value = c(3000,4000)),
   
   # Body mass plot output
-  plotOutput(outputId = "body_mass_scatterplot_output")
+  plotOutput(outputId = "body_mass_scatterplot_output"),
+  
+  # Create a list of checkboxs for year
+  checkboxGroupInput( inputId = "year", 
+                      label = "Select a year",
+                      choices = unique(penguins$year), 
+                      selected = c(2007, 2008)
+    ), 
+  
+  # Create an output for datatable
+  dataTableOutput(outputId = "penguin_DT_output")
   
   )
               
@@ -38,12 +49,14 @@ server <- function(input, output){
   # Create new data frame to filter body masses to feed into plot... call values from UI slides
   body_mass_df <-  reactive({
     
-    body_mass_df <- penguins |> 
+    body_mass_df <- penguins |>
       filter(body_mass_g %in% c(input$body_mass_input[1]:input$body_mass_input[2]))
-    
-    
+
+   
+
     
   })# Need to tell shiny that is reactive 
+  
   
   
   # Place plot in position defined by slider
@@ -66,9 +79,23 @@ server <- function(input, output){
       }
   )
   
+  # Filter for years
+  years_df <- reactive(penguins %>% filter(
+    year %in% c(input$year)
+  ))
   
   
-}
+  # Render DT table 
+  output$penguin_DT_output <- renderDataTable({
+    # Create reactive dataframe
+    datatable(years_df())
+    })
+
+  
+  
+  }
+  
+
 
 # Combine ui and server into an app 
 shinyApp(ui = ui, server = server)

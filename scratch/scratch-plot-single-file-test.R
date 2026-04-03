@@ -1,6 +1,7 @@
 # load packages ----
 library(tidyverse)
 library(palmerpenguins)
+library(DT)
 
 # create scatterplot ----
 # ggplot(na.omit(penguins), 
@@ -39,7 +40,10 @@ ggplot(na.omit(body_mass_df), # plot 'body_mass_df' rather than 'penguins' df
         legend.background = element_rect(color = "white"))
 
 
-
+## Create  data table
+years_df <- datatable(penguins %>% filter(
+  year %in% c(2007, 2008)
+))
 
 
 
