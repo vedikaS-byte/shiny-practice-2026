@@ -1,5 +1,7 @@
-
 ui <- navbarPage(
+  
+  # Establish theme using custom theme
+  theme = "app-fresh-theme.css",
   
   title = "LTER Animal Data Explorer",
   

@@ -23,6 +23,10 @@ sidebar <- dashboardSidebar(
 #..........................dashboardBody.........................
 body <- dashboardBody(
   
+  # Establish theme
+  use_theme("dashboard-fresh-theme.css"),
+  
+  
   # tabItems ----
   tabItems(
     

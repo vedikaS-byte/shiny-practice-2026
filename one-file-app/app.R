@@ -11,9 +11,25 @@ library(shiny)
 library(tidyverse)
 library(palmerpenguins)
 library(DT)
+library(shiny)
+library(shinydashboard)
+library(tidyverse)
+library(bslib)
+library(fresh)
+library(sass)
+
 
 # Create user interface
 ui <- fluidPage(
+  
+  # Establish a theme with bslib
+  #theme = bs_theme(bootswatch = "solar"),
+  theme = bs_theme(
+    bg = "lightblue", 
+    fg = "blue", 
+    primary = "purple", 
+    base_font = font_google("Times New Roman")
+  ), # we can also create our own
   
   # App title
   tags$h1("My App Title"), 
@@ -39,6 +55,7 @@ ui <- fluidPage(
   
   # Create an output for datatable
   dataTableOutput(outputId = "penguin_DT_output")
+  
   
   )
               
